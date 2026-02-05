@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /yoneticipan07.html
+Disallow: /yoneticipas15.html
+Disallow: /admin-style.css
+
+Sitemap: https://neoyapi.com/sitemap.xml

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="project.title">Antalya Emlak İlanları | Tüm Projelerimiz | NEO YAPI</title>
+    <meta name="description" content="Antalya'da tüm emlak ilanları. Satılık daire, villa, arsa, işyeri. En güncel fiyatlar, detaylı bilgiler ve fotoğraflar.">
+    <meta name="keywords" content="Antalya satılık daire, kiralık villa, emlak ilanları, gayrimenkul, arsa, işyeri">
+    <meta name="author" content="NEO YAPI">
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/609/609803.png">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Antalya Emlak İlanları | Tüm Projelerimiz">
+    <meta property="og:description" content="Antalya'da tüm emlak ilanları. En güncel fiyatlar ve detaylı bilgiler.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800">
+    <meta property="og:url" content="https://neoyapi.com/project.html">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- GLOBAL DİL SİSTEMİ -->
+    <script src="global-lang.js" defer></script>
+</head>
+<body>
+
+    <!-- NAVBAR - DÜNYA İKONLU DİL SEÇİCİ -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <!-- Logo (Sol) -->
+            <a href="index.html" class="logo" aria-label="NEO YAPI Ana Sayfa">
+                NEO<span>YAPI</span>
+            </a>
+            
+            <!-- Menü Linkleri (Orta) -->
+            <div class="nav-links" id="navLinks" role="menubar">
+                <a href="index.html" role="menuitem" data-i18n="nav.home">VİTRİN</a>
+                <a href="project.html" class="active" role="menuitem" data-i18n="nav.projects">PROJELER</a>
+                <a href="about.html" role="menuitem" data-i18n="nav.about">KURUMSAL</a>
+                <a href="number.html" role="menuitem" data-i18n="nav.contact">İLETİŞİM</a>
+            </div>
+
+            <!-- DİL SEÇİCİ - DÜNYA İKONU -->
+            <div class="language-selector desktop-lang">
+                <button class="lang-toggle" aria-label="Dil Seçimi" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-globe"></i>
+                </button>
+                <div class="lang-dropdown" role="menu">
+                    <button class="lang-item" data-lang="tr" onclick="changeLanguageGlobal('tr')" role="menuitem">
+                        <span class="lang-flag">🇹🇷</span>
+                        <span class="lang-name">Türkçe</span>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="lang-item" data-lang="en" onclick="changeLanguageGlobal('en')" role="menuitem">
+                        <span class="lang-flag">🇬🇧</span>
+                        <span class="lang-name">English</span>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="lang-item" data-lang="ru" onclick="changeLanguageGlobal('ru')" role="menuitem">
+                        <span class="lang-flag">🇷🇺</span>
+                        <span class="lang-name">Русский</span>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="lang-item" data-lang="de" onclick="changeLanguageGlobal('de')" role="menuitem">
+                        <span class="lang-flag">🇩🇪</span>
+                        <span class="lang-name">Deutsch</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobil Menü Butonu -->
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero page-hero" role="banner">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 data-i18n="project.title">Tüm Emlak İlanları</h1>
+            <p data-i18n="project.subtitle">Antalya'nın en kapsamlı gayrimenkul portföyü</p>
+        </div>
+    </header>
+    
+    <!-- STATS -->
+    <div class="container">
+        <div class="stats-container">
+            <div class="stat-card">
+                <span class="stat-number" id="totalListings">0</span>
+                <span class="stat-label" data-i18n="stats.total">Toplam İlan</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="featuredListings">0</span>
+                <span class="stat-label" data-i18n="stats.featured">Vitrin İlanı</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="activeFilter">0</span>
+                <span class="stat-label" data-i18n="stats.showing">Gösterilen</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">7/24</span>
+                <span class="stat-label" data-i18n="stats.support">Destek</span>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <br>
+        <br>
+    </div>
+
+    <!-- FILTER SECTION -->
+    <div class="filter-section" role="search">
+        <div class="filter-group">
+            <input type="text" id="searchInput" data-i18n-placeholder="filter.search" placeholder="İlan Ara (Örn: Lara, 3+1, havuzlu...)" 
+                   onkeyup="applyFilter()" aria-label="Search listings">
+        </div>
+        <div class="filter-group">
+            <select id="filterCategory" onchange="applyFilter()" aria-label="Filter by category">
+                <option value="all" data-i18n="filter.all">Tüm Kategoriler</option>
+                <option value="konut" data-i18n="filter.konut">Konut / Daire</option>
+                <option value="villa" data-i18n="filter.villa">Lüks Villa</option>
+                <option value="arsa" data-i18n="filter.arsa">Arsa / Arazi</option>
+                <option value="isyeri" data-i18n="filter.isyeri">Ticari / İşyeri</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <select id="filterSort" onchange="applyFilter()" aria-label="Sort listings">
+                <option value="new" data-i18n="filter.new">En Yeniler</option>
+                <option value="price-asc" data-i18n="filter.price-asc">Fiyat: Düşükten Yükseğe</option>
+                <option value="price-desc" data-i18n="filter.price-desc">Fiyat: Yüksekten Düşüğe</option>
+                <option value="featured" data-i18n="filter.featured">Önce Vitrinler</option>
+            </select>
+        </div>
+        <button class="btn-filter" onclick="applyFilter()" aria-label="Apply filters">
+            <i class="fas fa-search"></i> <span data-i18n="filter.button">ARA</span>
+        </button>
+    </div>
+
+    <!-- CATEGORY QUICK FILTER -->
+    <div class="container">
+        <div class="category-filter" role="group" aria-label="Quick category filters">
+            <button class="category-btn active" data-category="all" onclick="filterByCategory('all')">
+                <i class="fas fa-layer-group"></i> <span data-i18n="filter.all">Tümü</span>
+            </button>
+            <button class="category-btn" data-category="konut" onclick="filterByCategory('konut')">
+                <i class="fas fa-home"></i> <span data-i18n="filter.konut">Konut</span>
+            </button>
+            <button class="category-btn" data-category="villa" onclick="filterByCategory('villa')">
+                <i class="fas fa-crown"></i> <span data-i18n="filter.villa">Villa</span>
+            </button>
+            <button class="category-btn" data-category="arsa" onclick="filterByCategory('arsa')">
+                <i class="fas fa-mountain"></i> <span data-i18n="filter.arsa">Arsa</span>
+            </button>
+            <button class="category-btn" data-category="isyeri" onclick="filterByCategory('isyeri')">
+                <i class="fas fa-store"></i> <span data-i18n="filter.isyeri">İşyeri</span>
+            </button>
+            <button class="category-btn" data-category="featured" onclick="filterByCategory('featured')">
+                <i class="fas fa-star"></i> <span data-i18n="filter.featured">Vitrin</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ALL LISTINGS -->
+    <section class="container" aria-labelledby="listings-title">
+        <div class="page-header">
+            <h2 id="listings-title" class="page-title" data-i18n="project.title">Tüm Emlak Portföyümüz</h2>
+            <p class="page-subtitle" id="resultCountLabel" data-i18n="loading">İlanlar yükleniyor...</p>
+        </div>
+        
+        <div class="grid" id="projectGrid" role="list" aria-label="Property listings">
+            <div class="loading-placeholder">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p data-i18n="loading">İlanlar yükleniyor...</p>
+            </div>
+        </div>
+        
+        <!-- EMPTY STATE -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3 data-i18n="empty.title">İlan Bulunamadı</h3>
+            <p data-i18n="empty.message">Arama kriterlerinize uygun ilan bulunamadı. Lütfen farklı bir filtre deneyin.</p>
+            <button class="btn-filter" onclick="clearFilters()" style="margin-top: var(--space-lg);">
+                <i class="fas fa-times"></i> <span data-i18n="button.clear">Filtreleri Temizle</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/905321002030?text=Merhaba,%20NEO%20YAPI%20ilanlarınız%20hakkında%20bilgi%20almak%20istiyorum." 
+       target="_blank" 
+       class="whatsapp-float"
+       aria-label="Contact via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer style="background: #0F172A; color: #94A3B8; padding: 40px 0; text-align: center;" role="contentinfo">
+        <div class="container">
+            <p>© 2026 NEO YAPI. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">
+                <span data-i18n="footer.info">Tüm iletişim bilgileri günceldir.</span> | 
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL - DÜZELTİLMİŞ HALİ (ALAN, KAT, ODA) -->
+    <div id="detailModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-window">
+            <button class="close-btn" onclick="closeModal()" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-left">
+                <button class="slider-btn prev" onclick="changeSlide(-1)" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <img id="m-img" src="" class="modal-img" alt="Listing image">
+                <button class="slider-btn next" onclick="changeSlide(1)" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div id="m-count" class="img-counter">1 / 1</div>
+            </div>
+
+            <div class="modal-right">
+                <div class="modal-header">
+                    <h2 id="m-title">İlan Başlığı</h2>
+                    <span id="m-loc" style="color:#64748B; font-weight:600;">
+                        <i class="fas fa-map-marker-alt"></i> <span data-i18n="modal.location">Konum</span>
+                    </span>
+                </div>
+                
+                <div class="modal-price" id="m-price" style="font-size:32px; font-weight:800; color:#C5A059; margin: 20px 0;">
+                    0 ₺
+                </div>
+                
+                <!-- DÜZELTİLEN KISIM: BURASI SADECE ALAN, ODA, KAT OLARAK AYARLANDI -->
+                <div id="m-specs">
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <i class="fas fa-ruler-combined" style="color:#C5A059;"></i>
+                            <span data-i18n="modal.area">ALAN</span>
+                            <strong id="spec-m2">0 m²</strong>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-bed" style="color:#C5A059;"></i>
+                            <span data-i18n="modal.rooms">ODA</span>
+                            <strong id="spec-oda">-</strong>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-layer-group" style="color:#C5A059;"></i>
+                            <span data-i18n="modal.floor">KAT</span>
+                            <strong id="spec-kat">-</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 style="color:#0F172A; margin-bottom:10px;" data-i18n="modal.desc">Açıklama</h4>
+                <p id="m-desc" style="font-size:14px; color:#475569; line-height:1.7; margin-bottom: 20px;"></p>
+                
+                <div id="m-tags" style="margin-bottom: 20px;"></div>
+                
+                <h4 style="color:#0F172A; margin-bottom:10px;" data-i18n="modal.location">Konum</h4>
+                <div id="modal-map" style="width: 100%; height: 250px; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #E2E8F0; background:#eee;" 
+                     role="region" aria-label="Property location map"></div>
+                
+                <!-- ACTION BUTTONS -->
+                <div class="action-buttons" style="display: flex; gap: 10px; margin-top: 20px;">
+                    <a href="https://wa.me/905321002030" 
+                       target="_blank" 
+                       style="flex:1; background:#25D366; color:white; padding:15px; text-align:center; border-radius:8px; font-weight:700; text-decoration:none;"
+                       aria-label="Contact via WhatsApp about this listing">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="button.whatsapp">WhatsApp'tan Sor</span>
+                    </a>
+                    <button onclick="closeModal()" 
+                            style="flex:1; background:#64748B; color:white; border:none; padding:15px; border-radius:8px; font-weight:700; cursor:pointer;"
+                            aria-label="Close details">
+                        <span data-i18n="button.close">Kapat</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // MOBİL MENÜ - YENİ
+        window.toggleMenu = function() {
+            const navLinks = document.getElementById('navLinks');
+            const isExpanded = navLinks.classList.toggle('active');
+            document.querySelector('.menu-toggle').setAttribute('aria-expanded', isExpanded);
+            
+            // Mobilde açıldığında dil seçiciyi gizle/göster
+            const desktopLang = document.querySelector('.desktop-lang');
+            if (desktopLang) {
+                if (isExpanded && window.innerWidth <= 768) {
+                    desktopLang.style.display = 'none';
+                } else {
+                    desktopLang.style.display = 'block';
+                }
+            }
+        };
+
+        // MOBİL DİL MENÜSÜ KURULUMU - ABOUT.GİBİ
+        function setupMobileLanguageMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (!navLinks) return;
+            
+            // Eğer zaten eklenmemişse ekle
+            if (!document.querySelector('.mobile-language-section')) {
+                // Mobil dil seçici HTML'i - DİL SEÇ yazısı (nav.language KALDIRILDI)
+                const mobileLangHTML = `
+                    <div class="mobile-language-section">
+                        <button class="mobile-lang-toggle" onclick="toggleMobileLanguageMenu()">
+                            <i class="fas fa-globe"></i> <span data-i18n="nav.language">DİL SEÇ</span>
+                        </button>
+                        <div class="mobile-lang-dropdown">
+                            <button class="mobile-lang-item" data-lang="tr" onclick="changeLanguageMobile('tr')">
+                                <span class="lang-flag">🇹🇷</span>
+                                <span class="lang-name">Türkçe</span>
+                            </button>
+                            <button class="mobile-lang-item" data-lang="en" onclick="changeLanguageMobile('en')">
+                                <span class="lang-flag">🇬🇧</span>
+                                <span class="lang-name">English</span>
+                            </button>
+                            <button class="mobile-lang-item" data-lang="ru" onclick="changeLanguageMobile('ru')">
+                                <span class="lang-flag">🇷🇺</span>
+                                <span class="lang-name">Русский</span>
+                            </button>
+                            <button class="mobile-lang-item" data-lang="de" onclick="changeLanguageMobile('de')">
+                                <span class="lang-flag">🇩🇪</span>
+                                <span class="lang-name">Deutsch</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Sadece mobilde ekle
+                if (window.innerWidth <= 768) {
+                    navLinks.insertAdjacentHTML('beforeend', mobileLangHTML);
+                }
+            }
+        }
+
+        // MOBİL DİL MENÜSÜ AÇ/KAPAT
+        window.toggleMobileLanguageMenu = function() {
+            const dropdown = document.querySelector('.mobile-lang-dropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('active');
+            }
+        };
+
+        // MOBİLDEN DİL DEĞİŞTİRME
+        window.changeLanguageMobile = function(lang) {
+            changeLanguageGlobal(lang);
+            // Mobil menüyü kapat
+            toggleMenu();
+        };
+
+        // GLOBAL DİL DEĞİŞTİRME
+        window.changeLanguageGlobal = function(lang) {
+            console.log("Global dil değiştiriliyor:", lang);
+            localStorage.setItem('neoyapi-lang', lang);
+            
+            // Mobil menüyü kapat
+            if (window.innerWidth <= 768) {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            }
+            
+            // Sayfayı yenile
+            setTimeout(() => {
+                location.reload();
+            }, 300);
+        };
+
+        // Doküman yüklendiğinde
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Projeler sayfası yüklendi");
+            
+            // Dil seçici dışına tıklandığında kapat
+            document.addEventListener('click', function(event) {
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector && !languageSelector.contains(event.target)) {
+                    languageSelector.classList.remove('active');
+                }
+            });
+            
+            // Desktop dil seçiciye tıklayınca aç/kapat
+            const langToggle = document.querySelector('.lang-toggle');
+            if (langToggle) {
+                langToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const languageSelector = document.querySelector('.language-selector');
+                    if (languageSelector) {
+                        languageSelector.classList.toggle('active');
+                    }
+                });
+            }
+            
+            // Mobil menü linklerine tıklayınca menüyü kapat
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        const navLinks = document.getElementById('navLinks');
+                        if (navLinks) {
+                            navLinks.classList.remove('active');
+                        }
+                    }
+                });
+            });
+            
+            // Mobil menü içindeki dil seçiciyi dinamik ekle
+            setupMobileLanguageMenu();
+            
+            // Pencere boyutu değiştiğinde mobil dil menüsünü kontrol et
+            window.addEventListener('resize', setupMobileLanguageMenu);
+        });
+
+    </script>
+
+    <!-- FIREBASE SCRIPT (ESKİ VERSİYON KORUNDU, HTML ID'LERİNE UYUMLU ÇALIŞIR) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBF5hsTqXl5hSJk3z-_kuECRrQzaVl-aj8",
+            authDomain: "neoproject-e1cdd.firebaseapp.com",
+            databaseURL: "https://neoproject-e1cdd-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "neoproject-e1cdd",
+            storageBucket: "neoproject-e1cdd.firebasestorage.app",
+            messagingSenderId: "900464535576",
+            appId: "1:900464535576:web:5182d851532d84d21ffb6d",
+            measurementId: "G-C47VH3DEDG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Application State
+        let allListings = [];
+        let filteredListings = [];
+        let currentListing = null;
+        let currentSlideIndex = 0;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("📊 Projeler sayfası yüklendi");
+            loadListingsFromFirebase();
+            setupEventListeners();
+        });
+
+        // Load from Firebase
+        function loadListingsFromFirebase() {
+            const listingsRef = ref(db, 'listings');
+            
+            onValue(listingsRef, (snapshot) => {
+                const data = snapshot.val();
+                allListings = [];
+                
+                if (data && Object.keys(data).length > 0) {
+                    Object.keys(data).forEach(key => {
+                        allListings.push({ id: key, ...data[key] });
+                    });
+                    console.log(`✅ ${allListings.length} ilan yüklendi`);
+                } else {
+                    // Firebase'de hiç ilan yoksa boş array döndür
+                    allListings = [];
+                    console.log("ℹ️ Firebase'de ilan bulunmuyor");
+                }
+                
+                updateUI();
+                
+            }, (error) => {
+                console.error("⚠️ Firebase hatası:", error);
+                allListings = [];
+                updateUI();
+            });
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft' && document.getElementById('detailModal').classList.contains('active')) {
+                    changeSlide(-1);
+                }
+                if (e.key === 'ArrowRight' && document.getElementById('detailModal').classList.contains('active')) {
+                    changeSlide(1);
+                }
+            });
+            
+            // Close modal on outside click
+            window.onclick = (e) => {
+                if (e.target === document.getElementById('detailModal')) {
+                    closeModal();
+                }
+            }
+        }
+
+        // Update UI
+        function updateUI() {
+            filteredListings = [...allListings];
+            
+            // Update stats
+            document.getElementById('totalListings').textContent = allListings.length;
+            document.getElementById('featuredListings').textContent = allListings.filter(l => l.featured).length;
+            document.getElementById('activeFilter').textContent = filteredListings.length;
+            
+            // Render listings
+            renderListings();
+            
+            // Update result count
+            document.getElementById('resultCountLabel').textContent = 
+                `${filteredListings.length} ilan listeleniyor`;
+            
+            // Hide/show empty state
+            const emptyState = document.getElementById('emptyState');
+            if (filteredListings.length === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
+        }
+
+        // Render listings to grid
+        function renderListings() {
+            const container = document.getElementById('projectGrid');
+            if (!container) return;
+            
+            if (filteredListings.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3 data-i18n="empty.title">İlan Bulunamadı</h3>
+                        <p data-i18n="empty.message">Arama kriterlerinize uygun ilan bulunamadı.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filteredListings.map((listing, index) => {
+                const img = listing.images && listing.images.length > 0 
+                    ? listing.images[0] 
+                    : 'https://via.placeholder.com/400x300/0F172A/FFFFFF?text=NEO+YAPI';
+                
+                const featuredBadge = listing.featured 
+                    ? '<span class="featured-badge" style="position:absolute; top:10px; right:10px; background:#C5A059; color:white; padding:6px 12px; border-radius:20px; font-size:11px; font-weight:700; z-index:5;"><i class="fas fa-star"></i> <span data-i18n="title.featured">VİTRİN</span></span>' 
+                    : '';
+                
+                const tagClass = getTagClass(listing.category);
+                
+                return `
+                    <article class="card optimized-card" onclick="openModal('${listing.id}')" 
+                             style="animation-delay: ${index * 0.05}s" data-id="${listing.id}">
+                        <div class="card-img-wrap">
+                            <img src="${img}" alt="${listing.title} - ${listing.loc}" loading="lazy">
+                            ${featuredBadge}
+                            <span class="tag ${tagClass}">${listing.category.toUpperCase()}</span>
+                            <div class="overlay"><i class="fas fa-search-plus"></i> <span data-i18n="button.view">İNCELE</span></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="price">${listing.price}</div>
+                            <h3 class="title">${listing.title}</h3>
+                            <p class="loc"><i class="fas fa-map-marker-alt"></i> ${listing.loc}</p>
+                            <div class="specs">
+                                <span><i class="fas fa-ruler-combined"></i> ${listing.details?.m2 || '-'} m²</span>
+                                <span><i class="fas fa-bed"></i> ${listing.details?.oda || '-'}</span>
+                                <span><i class="fas fa-layer-group"></i> ${listing.details?.kat || '-'}</span>
+                            </div>
+                            <button class="btn-card"><span data-i18n="button.details">DETAYLAR</span></button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // Get tag class
+        function getTagClass(category) {
+            const classes = {
+                'konut': 'tag-green',
+                'villa': 'tag-gold',
+                'arsa': 'tag-navy',
+                'isyeri': 'tag-red'
+            };
+            return classes[category] || 'tag-gold';
+        }
+
+        // Filter by category (quick filter)
+        window.filterByCategory = function(category) {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update filter dropdown
+            if (category !== 'featured') {
+                document.getElementById('filterCategory').value = category;
+            }
+            
+            // Apply filter
+            applyFilter();
+        };
+
+        // Apply filters
+        window.applyFilter = function() {
+            const search = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const category = document.getElementById('filterCategory')?.value || 'all';
+            const sort = document.getElementById('filterSort')?.value || 'new';
+            
+            filteredListings = allListings.filter(listing => {
+                const matchesSearch = listing.title.toLowerCase().includes(search) || 
+                                    listing.loc.toLowerCase().includes(search) ||
+                                    (listing.desc && listing.desc.toLowerCase().includes(search)) ||
+                                    (listing.tags && listing.tags.some(tag => tag.includes(search)));
+                
+                const matchesCategory = category === 'all' || listing.category === category;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            // Apply sorting
+            if (sort === 'price-asc') {
+                filteredListings.sort((a, b) => {
+                    const priceA = parseInt(a.price.replace(/[^0-9]/g, '')) || 0;
+                    const priceB = parseInt(b.price.replace(/[^0-9]/g, '')) || 0;
+                    return priceA - priceB;
+                });
+            } else if (sort === 'price-desc') {
+                filteredListings.sort((a, b) => {
+                    const priceA = parseInt(a.price.replace(/[^0-9]/g, '')) || 0;
+                    const priceB = parseInt(b.price.replace(/[^0-9]/g, '')) || 0;
+                    return priceB - priceA;
+                });
+            } else if (sort === 'featured') {
+                filteredListings.sort((a, b) => {
+                    if (a.featured && !b.featured) return -1;
+                    if (!a.featured && b.featured) return 1;
+                    return 0;
+                });
+            }
+            
+            // Update UI
+            renderListings();
+            document.getElementById('activeFilter').textContent = filteredListings.length;
+            document.getElementById('resultCountLabel').textContent = 
+                `${filteredListings.length} ilan bulundu`;
+            
+            // Update empty state
+            const emptyState = document.getElementById('emptyState');
+            if (filteredListings.length === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
+        };
+
+        // Clear all filters
+        window.clearFilters = function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterCategory').value = 'all';
+            document.getElementById('filterSort').value = 'new';
+            
+            // Reset category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            applyFilter();
+        };
+
+        // Modal Functions
+        window.openModal = function(listingId) {
+            const listing = allListings.find(l => l.id === listingId);
+            if (!listing) return;
+            
+            currentListing = listing;
+            currentSlideIndex = 0;
+            
+            const modal = document.getElementById('detailModal');
+            if (!modal) return;
+            
+            // Update modal content
+            document.getElementById('m-title').textContent = listing.title;
+            document.getElementById('m-loc').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${listing.loc}`;
+            document.getElementById('m-price').textContent = listing.price;
+            document.getElementById('m-desc').textContent = listing.desc;
+            
+            // DÜZELTİLEN KISIM: SADECE ALAN, ODA, KAT GÜNCELLENİYOR
+            // Not: Bu ID'ler yukarıdaki HTML'deki "spec-m2", "spec-oda", "spec-kat" ID'lerine karşılık gelir.
+            const specM2 = document.getElementById('spec-m2');
+            const specOda = document.getElementById('spec-oda');
+            const specKat = document.getElementById('spec-kat');
+
+            if (specM2) specM2.textContent = (listing.details?.m2 || '-') + ' m²';
+            if (specOda) specOda.textContent = listing.details?.oda || '-';
+            if (specKat) specKat.textContent = listing.details?.kat || '-';
+            
+            // Update tags
+            const tagsContainer = document.getElementById('m-tags');
+            if (listing.tags && listing.tags.length > 0) {
+                tagsContainer.innerHTML = `
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
+                        ${listing.tags.map(tag => 
+                            `<span style="background: #F1F5F9; color: #475569; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">#${tag}</span>`
+                        ).join('')}
+                    </div>
+                `;
+            } else {
+                tagsContainer.innerHTML = '';
+            }
+            
+            // Update images
+            if (listing.images && listing.images.length > 0) {
+                document.getElementById('m-img').src = listing.images[0];
+                document.getElementById('m-count').textContent = `1 / ${listing.images.length}`;
+            }
+            
+            // Update map
+            const query = encodeURIComponent(listing.loc + ', Antalya');
+            document.getElementById('modal-map').innerHTML = `
+                <iframe 
+                    width="100%" height="100%" frameborder="0" style="border:0" 
+                    src="https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    loading="lazy"
+                    title="${listing.title} konumu">
+                </iframe>
+            `;
+            
+            // Update WhatsApp link
+            const whatsappBtn = document.querySelector('.action-buttons a[href*="whatsapp"]');
+            if (whatsappBtn) {
+                const message = `Merhaba, ${encodeURIComponent(listing.title)} (${listing.price}) ilanı hakkında bilgi almak istiyorum.`;
+                whatsappBtn.href = `https://wa.me/905321002030?text=${encodeURIComponent(message)}`;
+            }
+            
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeModal = function() {
+            document.getElementById('detailModal').classList.remove('active');
+            document.getElementById('detailModal').setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        };
+
+        window.changeSlide = function(direction) {
+            if (!currentListing || !currentListing.images || currentListing.images.length <= 1) return;
+            
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = currentListing.images.length - 1;
+            } else if (currentSlideIndex >= currentListing.images.length) {
+                currentSlideIndex = 0;
+            }
+            
+            document.getElementById('m-img').src = currentListing.images[currentSlideIndex];
+            document.getElementById('m-count').textContent = `${currentSlideIndex + 1} / ${currentListing.images.length}`;
+        };
+
+    </script>
+</body>
+</html>

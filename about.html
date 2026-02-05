@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="about.title">Hakkımızda | NEO YAPI - Antalya'nın Güvenilir Emlak Danışmanı</title>
+    <meta name="description" content="NEO YAPI - 2015'ten beri Antalya'da gayrimenkul sektöründe güven, şeffaflık ve kalite ilkeleriyle hizmet veriyoruz.">
+    <meta name="keywords" content="NEO YAPI hakkında, Antalya emlakçı, gayrimenkul danışmanlığı, emlak şirketi">
+    <meta name="author" content="NEO YAPI">
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/609/609803.png">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Hakkımızda | NEO YAPI">
+    <meta property="og:description" content="10 yıllık tecrübemizle Antalya'da güvenilir gayrimenkul hizmeti.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800">
+    <meta property="og:url" content="https://neoyapi.com/about.html">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- GLOBAL DİL SİSTEMİ -->
+    <script src="global-lang.js" defer></script>
+</head>
+<body>
+
+    <!-- NAVBAR - DÜNYA İKONLU DİL SEÇİCİ -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <!-- Logo (Sol) -->
+            <a href="index.html" class="logo" aria-label="NEO YAPI Ana Sayfa">
+                NEO<span>YAPI</span>
+            </a>
+            
+            <!-- Menü Linkleri (Orta) -->
+            <div class="nav-links" id="navLinks" role="menubar">
+                <a href="index.html" role="menuitem" data-i18n="nav.home">VİTRİN</a>
+                <a href="project.html" role="menuitem" data-i18n="nav.projects">PROJELER</a>
+                <a href="about.html" class="active" role="menuitem" data-i18n="nav.about">KURUMSAL</a>
+                <a href="number.html" role="menuitem" data-i18n="nav.contact">İLETİŞİM</a>
+            </div>
+
+            <!-- DİL SEÇİCİ - DÜNYA İKONU -->
+            <div class="language-selector desktop-lang">
+                <button class="lang-toggle" aria-label="Dil Seçimi" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-globe"></i>
+                </button>
+                <div class="lang-dropdown" role="menu">
+                    <button class="lang-item" data-lang="tr" onclick="changeLanguageGlobal('tr')" role="menuitem">
+                        <span class="lang-flag">🇹🇷</span>
+                        <span class="lang-name">Türkçe</span>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="lang-item" data-lang="en" onclick="changeLanguageGlobal('en')" role="menuitem">
+                        <span class="lang-flag">🇬🇧</span>
+                        <span class="lang-name">English</span>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="lang-item" data-lang="ru" onclick="changeLanguageGlobal('ru')" role="menuitem">
+                        <span class="lang-flag">🇷🇺</span>
+                        <span class="lang-name">Русский</span>
+                    </button>
+                    <div class="divider"></div>
+                    <button class="lang-item" data-lang="de" onclick="changeLanguageGlobal('de')" role="menuitem">
+                        <span class="lang-flag">🇩🇪</span>
+                        <span class="lang-name">Deutsch</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobil Menü Butonu -->
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero about-hero" role="banner">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 data-i18n="about.title">Biz Kimiz?</h1>
+            <p data-i18n="about.subtitle">Güven, Kalite ve Estetik</p>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div>
+        <br>
+        <br>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="about-content">
+            <!-- Introduction -->
+            <section aria-labelledby="our-story">
+                <h2 id="our-story" class="section-title" style="text-align: left; margin-bottom: var(--space-lg);" data-i18n="about.story">
+                    Hikayemiz
+                </h2>
+                <div style="font-size: 1.1rem; color: var(--text-body); line-height: 1.8;">
+                    <p style="margin-bottom: var(--space-lg);">
+                        <strong data-i18n="about.story.year">2015 yılında Antalya'da kurulan NEO YAPI</strong>, gayrimenkul sektörüne "şeffaflık" ve "güven" ilkelerini kazandırmak amacıyla yola çıktı. Kuruluşumuzdan bu yana yüzlerce aileyi ev sahibi yaptık ve yatırımcılarımıza yüksek kazançlı fırsatlar sunduk.
+                    </p>
+                    <p style="margin-bottom: var(--space-xl);">
+                        <span data-i18n="about.story.mission">Sadece bina değil, <strong>yaşam alanları inşa ediyoruz</strong>. Portföyümüzdeki her bir gayrimenkul, uzman ekibimiz tarafından titizlikle incelenir, hukuki ve teknik kontrolleri yapılır. Amacımız, size sadece bir tapu değil, huzurlu bir gelecek sunmaktır.</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Stats -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-text" data-i18n="stats.experience">Yıllık Tecrübe</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-text" data-i18n="stats.customers">Mutlu Müşteri</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-text" data-i18n="stats.projects">Tamamlanan Proje</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">%100</span>
+                    <span class="stat-text" data-i18n="stats.satisfaction">Müşteri Memnuniyeti</span>
+                </div>
+            </div>
+
+            <!-- Mission & Vision -->
+            <section class="mission-vision" aria-labelledby="mission-vision">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3 style="color: white; margin-bottom: var(--space-md);" data-i18n="about.mission">Misyonumuz</h3>
+                    <p data-i18n="about.mission.text">Müşterilerimize en doğru gayrimenkul yatırımlarını sunarak, güvenilir ve şeffaf bir danışmanlık hizmeti sağlamak. Her adımda kaliteyi ön planda tutarak, hayallerindeki yaşam alanlarını gerçeğe dönüştürmek.</p>
+                </div>
+                <div class="vision-card">
+                    <i class="fas fa-eye"></i>
+                    <h3 style="color: white; margin-bottom: var(--space-md);" data-i18n="about.vision">Vizyonumuz</h3>
+                    <p data-i18n="about.vision.text">Antalya'nın önde gelen, teknolojiye entegre, sürdürülebilir ve yenilikçi gayrimenkul markası olmak. Sektörde standartları belirleyerek, müşteri memnuniyetinde örnek gösterilen bir şirket haline gelmek.</p>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section aria-labelledby="why-us" style="margin-top: var(--space-2xl);">
+                <h3 id="why-us" style="font-size: 1.5rem; color: var(--primary-dark); margin-bottom: var(--space-lg);" data-i18n="about.why">
+                    Neden NEO YAPI?
+                </h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 data-i18n="values.trust">Güven</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);" data-i18n="values.trust.desc">
+                            Sözleşmelerimizde %100 şeffaflık
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4 data-i18n="values.quality">Kalite</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);" data-i18n="values.quality.desc">
+                            Sadece sertifikalı projeler
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4 data-i18n="values.support">Destek</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);" data-i18n="values.support.desc">
+                            7/24 teknik ve hukuki destek
+                        </p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 data-i18n="values.experience">Deneyim</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: var(--space-sm);" data-i18n="values.experience.desc">
+                            10 yıllık sektör tecrübesi
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline -->
+            <section class="timeline" aria-labelledby="journey" style="margin-top: var(--space-2xl);">
+                <h3 id="journey" style="font-size: 1.5rem; color: var(--primary-dark); margin-bottom: var(--space-xl); text-align: center;" data-i18n="about.journey">
+                    Yolculuğumuz
+                </h3>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-i18n="timeline.2015.title">Kuruluş</h4>
+                        <p data-i18n="timeline.2015.desc">Antalya'da küçük bir ofiste, 3 kişilik ekiple hizmet vermeye başladık.</p>
+                    </div>
+                    <div class="timeline-year">2015</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-i18n="timeline.2017.title">İlk Büyük Proje</h4>
+                        <p data-i18n="timeline.2017.desc">Lara'da 50 dairelik ilk rezidans projemizi tamamladık.</p>
+                    </div>
+                    <div class="timeline-year">2017</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-i18n="timeline.2020.title">Dijital Dönüşüm</h4>
+                        <p data-i18n="timeline.2020.desc">Online platformumuzu kurarak, dijital gayrimenkul danışmanlığına geçtik.</p>
+                    </div>
+                    <div class="timeline-year">2020</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 data-i18n="timeline.2023.title">Yeni Ofis</h4>
+                        <p data-i18n="timeline.2023.desc">Fener Mahallesi'ndeki yeni modern ofisimize taşındık.</p>
+                    </div>
+                    <div class="timeline-year">2023</div>
+                </div>
+            </section>
+
+            <!-- Team -->
+            <section class="team-section" aria-labelledby="our-team">
+                <h3 id="our-team" style="font-size: 1.5rem; color: var(--primary-dark); margin-bottom: var(--space-lg);" data-i18n="about.team">
+                    Ekibimiz
+                </h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="member-name">Ahmet Yılmaz</div>
+                        <div class="member-role" data-i18n="team.founder">Kurucu & Genel Müdür</div>
+                        <div class="member-bio" data-i18n="team.founder.bio">
+                            15 yıllık gayrimenkul tecrübesi. İnşaat mühendisliği ve işletme mezunu.
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="member-name">Mehmet Demir</div>
+                        <div class="member-role" data-i18n="team.engineer">İnşaat Mühendisi</div>
+                        <div class="member-bio" data-i18n="team.engineer.bio">
+                            Proje yönetimi ve teknik kontrollerden sorumlu. 8 yıllık deneyim.
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="member-name">Ayşe Kaya</div>
+                        <div class="member-role" data-i18n="team.lawyer">Hukuk Danışmanı</div>
+                        <div class="member-bio" data-i18n="team.lawyer.bio">
+                            Tapu, ipotek ve sözleşme süreçleri uzmanı. 6 yıllık deneyim.
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="member-name">Fatma Şahin</div>
+                        <div class="member-role" data-i18n="team.customer">Müşteri İlişkileri</div>
+                        <div class="member-bio" data-i18n="team.customer.bio">
+                            Müşteri memnuniyeti ve satış sonrası destekten sorumlu.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <div class="contact-cta">
+                <h3 data-i18n="cta.title">Hayalinizdeki Gayrimenkule Ulaşın</h3>
+                <p style="margin-bottom: var(--space-lg); opacity: 0.9;" data-i18n="cta.subtitle">
+                    Uzman ekibimizle tanışmak ve projelerimiz hakkında detaylı bilgi almak için bize ulaşın.
+                </p>
+                <a href="number.html" 
+                   style="background: white; color: var(--accent-gold); padding: var(--space-md) var(--space-xl); border-radius: var(--radius-lg); font-weight: 700; text-decoration: none; display: inline-block;">
+                    <i class="fas fa-phone-alt"></i> <span data-i18n="cta.button">Hemen Ara</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/905321002030?text=Merhaba,%20NEO%20YAPI%20hakkında%20bilgi%20almak%20istiyorum." 
+       target="_blank" 
+       class="whatsapp-float"
+       aria-label="Contact via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer style="background: #0F172A; color: #94A3B8; padding: 40px 0; text-align: center; margin-top: var(--space-2xl);" role="contentinfo">
+        <div class="container">
+            <p>© 2026 NEO YAPI. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></p>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">
+                <span data-i18n="footer.info">Tüm iletişim bilgileri günceldir.</span> | 
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // MOBİL MENÜ - YENİ
+        window.toggleMenu = function() {
+            const navLinks = document.getElementById('navLinks');
+            const isExpanded = navLinks.classList.toggle('active');
+            document.querySelector('.menu-toggle').setAttribute('aria-expanded', isExpanded);
+            
+            // Mobilde açıldığında dil seçiciyi gizle/göster
+            const desktopLang = document.querySelector('.desktop-lang');
+            if (desktopLang) {
+                if (isExpanded && window.innerWidth <= 768) {
+                    desktopLang.style.display = 'none';
+                } else {
+                    desktopLang.style.display = 'block';
+                }
+            }
+        };
+
+        // MOBİL DİL MENÜSÜ KURULUMU
+        function setupMobileLanguageMenu() {
+            // Mobil menü içine dil seçici ekle
+            const navLinks = document.getElementById('navLinks');
+            if (!navLinks) return;
+            
+            // Eğer zaten eklenmemişse ekle
+            if (!document.querySelector('.mobile-language-section')) {
+                // Mobil dil seçici HTML'i - DİL SEÇ yazısı (nav.language KALDIRILDI)
+                const mobileLangHTML = `
+                    <div class="mobile-language-section">
+                        <button class="mobile-lang-toggle" onclick="toggleMobileLanguageMenu()">
+                            <i class="fas fa-globe"></i> <span data-i18n="nav.language">DİL SEÇ</span>
+                        </button>
+                        <div class="mobile-lang-dropdown">
+                            <button class="mobile-lang-item" data-lang="tr" onclick="changeLanguageMobile('tr')">
+                                <span class="lang-flag">🇹🇷</span>
+                                <span class="lang-name">Türkçe</span>
+                            </button>
+                            <button class="mobile-lang-item" data-lang="en" onclick="changeLanguageMobile('en')">
+                                <span class="lang-flag">🇬🇧</span>
+                                <span class="lang-name">English</span>
+                            </button>
+                            <button class="mobile-lang-item" data-lang="ru" onclick="changeLanguageMobile('ru')">
+                                <span class="lang-flag">🇷🇺</span>
+                                <span class="lang-name">Русский</span>
+                            </button>
+                            <button class="mobile-lang-item" data-lang="de" onclick="changeLanguageMobile('de')">
+                                <span class="lang-flag">🇩🇪</span>
+                                <span class="lang-name">Deutsch</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Sadece mobilde ekle
+                if (window.innerWidth <= 768) {
+                    navLinks.insertAdjacentHTML('beforeend', mobileLangHTML);
+                }
+            }
+        }
+
+        // MOBİL DİL MENÜSÜ AÇ/KAPAT
+        window.toggleMobileLanguageMenu = function() {
+            const dropdown = document.querySelector('.mobile-lang-dropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('active');
+            }
+        };
+
+        // MOBİLDEN DİL DEĞİŞTİRME
+        window.changeLanguageMobile = function(lang) {
+            changeLanguageGlobal(lang);
+            // Mobil menüyü kapat
+            toggleMenu();
+        };
+
+        // GLOBAL DİL DEĞİŞTİRME
+        window.changeLanguageGlobal = function(lang) {
+            console.log("Global dil değiştiriliyor:", lang);
+            localStorage.setItem('neoyapi-lang', lang);
+            
+            // Mobil menüyü kapat
+            if (window.innerWidth <= 768) {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) {
+                    navLinks.classList.remove('active');
+                }
+            }
+            
+            // Sayfayı yenile
+            setTimeout(() => {
+                location.reload();
+            }, 300);
+        };
+
+        // Doküman yüklendiğinde
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("About sayfası yüklendi");
+            
+            // Dil seçici dışına tıklandığında kapat
+            document.addEventListener('click', function(event) {
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector && !languageSelector.contains(event.target)) {
+                    languageSelector.classList.remove('active');
+                }
+            });
+            
+            // Desktop dil seçiciye tıklayınca aç/kapat
+            const langToggle = document.querySelector('.lang-toggle');
+            if (langToggle) {
+                langToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    languageSelector.classList.toggle('active');
+                });
+            }
+            
+            // Mobil menü linklerine tıklayınca menüyü kapat
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        const navLinks = document.getElementById('navLinks');
+                        if (navLinks) {
+                            navLinks.classList.remove('active');
+                        }
+                    }
+                });
+            });
+            
+            // Mobil menü içindeki dil seçiciyi dinamik ekle
+            setupMobileLanguageMenu();
+            
+            // Pencere boyutu değiştiğinde mobil dil menüsünü kontrol et
+            window.addEventListener('resize', setupMobileLanguageMenu);
+            
+            // Add animations to stats
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + (stat.textContent.includes('%') ? '%' : '+');
+                }, 30);
+            });
+            
+            // Add animation to timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        });
+
+    </script>
+</body>
+</html>

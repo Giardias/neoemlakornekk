@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resim Migration</title>
+</head>
+<body>
+    <h1>Base64 → Storage Migration</h1>
+    <button onclick="startMigration()">MIGRATION BAŞLAT</button>
+    <div id="log"></div>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBF5hsTqXl5hSJk3z-_kuECRrQzaVl-aj8",
+            authDomain: "neoproject-e1cdd.firebaseapp.com",
+            databaseURL: "https://neoproject-e1cdd-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "neoproject-e1cdd",
+            storageBucket: "neoproject-e1cdd.firebasestorage.app",
+            messagingSenderId: "900464535576",
+            appId: "1:900464535576:web:5182d851532d84d21ffb6d"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+        
+        async function startMigration() {
+            const log = document.getElementById('log');
+            log.innerHTML = "📦 Migration başlıyor...<br>";
+            
+            try {
+                const snapshot = await get(ref(db, 'listings'));
+                const data = snapshot.val();
+                
+                if (!data) {
+                    log.innerHTML += "❌ Veri bulunamadı<br>";
+                    return;
+                }
+                
+                for (const [id, listing] of Object.entries(data)) {
+                    if (!listing.images || !Array.isArray(listing.images)) continue;
+                    
+                    log.innerHTML += `<br>🔄 İlan: ${listing.title} (${listing.images.length} resim)<br>`;
+                    
+                    const newImageUrls = [];
+                    for (let i = 0; i < listing.images.length; i++) {
+                        const img = listing.images[i];
+                        
+                        // Base64 mi kontrol et
+                        if (img && img.startsWith('data:image')) {
+                            log.innerHTML += `  ↳ Resim ${i+1}: Base64 → Storage'a yükleniyor...`;
+                            
+                            try {
+                                // Base64'i Storage'a yükle
+                                const fileName = `migrated/${id}_${i}_${Date.now()}.jpg`;
+                                const imageRef = storageRef(storage, fileName);
+                                
+                                await uploadString(imageRef, img, 'data_url');
+                                const url = await getDownloadURL(imageRef);
+                                
+                                newImageUrls.push(url);
+                                log.innerHTML += ` ✅<br>`;
+                            } catch (err) {
+                                log.innerHTML += ` ❌ Hata: ${err.message}<br>`;
+                                newImageUrls.push(img); // Eski haliyle bırak
+                            }
+                        } else {
+                            // URL ise olduğu gibi bırak
+                            newImageUrls.push(img);
+                        }
+                    }
+                    
+                    // Database'i güncelle
+                    if (newImageUrls.length > 0) {
+                        await update(ref(db, `listings/${id}`), { images: newImageUrls });
+                        log.innerHTML += `✅ Güncellendi: ${newImageUrls.length} resim<br>`;
+                    }
+                }
+                
+                log.innerHTML += "<br><strong>🎉 MIGRATION TAMAMLANDI!</strong>";
+            } catch (error) {
+                log.innerHTML += `<br>❌ CRITICAL ERROR: ${error.message}<br>`;
+            }
+        }
+    </script>
+</body>
+</html>

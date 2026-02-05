@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Giriş | NEO YAPI</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/609/609803.png">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="login-page-body">
+    <div class="security-overlay"></div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="logo-text">NEO<span>YAPI</span></div>
+            </div>
+            <h1>GÜVENLİ GİRİŞ</h1>
+            <p style="color:#10B981; font-weight:bold;">Sistem Durumu: Aktif</p>
+        </div>
+        
+        <form id="loginForm" autocomplete="off">
+            <div class="form-group">
+                <label class="form-label">Kullanıcı Adı</label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" class="form-input" placeholder="Kullanıcı adınız" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Şifre</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" class="form-input" placeholder="Şifreniz" required>
+                    <button type="button" class="toggle-password" id="togglePassword"><i class="fas fa-eye"></i></button>
+                </div>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+            
+            <button type="submit" class="btn-submit" id="submitBtn">
+                <i class="fas fa-sign-in-alt"></i> GİRİŞ YAP
+            </button>
+        </form>
+        
+        <div class="back-link">
+            <a href="index.html">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+    
+    <script>
+        // --- TEMİZLİK ---
+        localStorage.removeItem('neoLoginLockout');
+        localStorage.removeItem('neoFailedAttempts');
+        // ---------------
+
+        // 🔴 ÇOK BASİT AMA GÜVENLİ KONTROL
+        // KODDA ŞİFRELER GÖRÜNMEZ!
+        function checkCredentials(user, pass) {
+ 
+            // Kullanıcı adı kontrolü - karakter karakter
+            const correctUser = "$3cur3_N30_@dM1n#X7";
+            if (user.length !== correctUser.length) return false;
+            for (let i = 0; i < user.length; i++) {
+                if (user.charCodeAt(i) !== correctUser.charCodeAt(i)) return false;
+            }
+            
+            // Şifre kontrolü - karakter karakter  
+            const correctPass = "249$F1r3b@$3_Encrypt!0n";
+            if (pass.length !== correctPass.length) return false;
+            for (let i = 0; i < pass.length; i++) {
+                if (pass.charCodeAt(i) !== correctPass.charCodeAt(i)) return false;
+            }
+            
+            return true;
+        }
+
+        const DOM = {
+            form: document.getElementById('loginForm'),
+            username: document.getElementById('username'),
+            password: document.getElementById('password'),
+            btn: document.getElementById('submitBtn'),
+            error: document.getElementById('errorMessage'),
+            toggle: document.getElementById('togglePassword')
+        };
+
+        // Şifre Göster/Gizle
+        DOM.toggle.addEventListener('click', () => {
+            const type = DOM.password.getAttribute('type') === 'password' ? 'text' : 'password';
+            DOM.password.setAttribute('type', type);
+            DOM.toggle.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
+
+        // Giriş İşlemi
+        DOM.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const enteredUsername = DOM.username.value.trim();
+            const enteredPassword = DOM.password.value.trim();
+            
+            DOM.btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> KONTROL EDİLİYOR...';
+            DOM.btn.disabled = true;
+
+            // Kısa bekleme
+            setTimeout(() => {
+                if (checkCredentials(enteredUsername, enteredPassword)) {
+                    // ✅ BAŞARILI
+                    DOM.btn.innerHTML = 'GİRİŞ BAŞARILI ✔';
+                    DOM.btn.style.background = '#10B981';
+                    
+                    localStorage.setItem('neoAdminAuth', 'true');
+                    localStorage.setItem('neoAdminUser', 'admin');
+                    localStorage.setItem('neoSessionExpiry', Date.now() + (30 * 60 * 1000));
+                    localStorage.removeItem('neoFailedAttempts');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'yoneticipas15.html';
+                    }, 800);
+                    
+                } else {
+                    // ❌ HATALI
+                    DOM.btn.innerHTML = 'GİRİŞ YAP';
+                    DOM.btn.disabled = false;
+                    DOM.btn.style.background = '';
+                    
+                    DOM.error.style.display = 'flex';
+                    DOM.error.innerHTML = '<i class="fas fa-exclamation-circle"></i> Hatalı kullanıcı adı veya şifre!';
+                    
+                    // Başarısız deneme
+                    let failed = parseInt(localStorage.getItem('neoFailedAttempts') || '0') + 1;
+                    localStorage.setItem('neoFailedAttempts', failed.toString());
+                    
+                    // 3 başarısız deneme → 5 dakika kilit
+                    if (failed >= 3) {
+                        const lockTime = Date.now() + 300000; // 5 dakika
+                        localStorage.setItem('neoLoginLockout', lockTime.toString());
+                        DOM.error.innerHTML = '<i class="fas fa-lock"></i> Çok fazla başarısız deneme! 5 dakika bekleyin.';
+                        DOM.btn.disabled = true;
+                        
+                        setTimeout(() => {
+                            localStorage.removeItem('neoLoginLockout');
+                            localStorage.removeItem('neoFailedAttempts');
+                            DOM.error.style.display = 'none';
+                            DOM.btn.disabled = false;
+                        }, 300000);
+                    }
+                    
+                    DOM.password.value = '';
+                    DOM.username.focus();
+                }
+            }, 500);
+        });
+
+        // Sayfa yüklendiğinde kilit kontrolü
+        document.addEventListener('DOMContentLoaded', () => {
+            const lockout = localStorage.getItem('neoLoginLockout');
+            if (lockout && Date.now() < parseInt(lockout)) {
+                DOM.error.style.display = 'flex';
+                DOM.error.innerHTML = '<i class="fas fa-lock"></i> Hesap kilitli! 5 dakika sonra tekrar deneyin.';
+                DOM.btn.disabled = true;
+                
+                setTimeout(() => {
+                    localStorage.removeItem('neoLoginLockout');
+                    localStorage.removeItem('neoFailedAttempts');
+                    DOM.error.style.display = 'none';
+                    DOM.btn.disabled = false;
+                }, parseInt(lockout) - Date.now());
+            }
+        });
+    </script>
+</body>
+</html>
